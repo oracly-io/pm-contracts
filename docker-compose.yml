@@ -1,0 +1,49 @@
+---
+version: "3.0"
+
+networks:
+  default:
+    name: pm-network
+
+services:
+  builder:
+    image: node:20.11.0
+    user: '${UID:-node}:${GID:-node}'
+    tty: '${TTY:-true}'
+    working_dir: /build
+    volumes:
+      - ./:/build
+    command: sh -c "
+      npm install -d &&
+      npm audit fix || true &&
+      npm run dev"
+    depends_on:
+        - 'hhnode'
+    environment:
+      WATCH_FILES: '${WATCH_FILES:-true}'
+      DEBUG_BOOTING: '${DEBUG_COLORS:-false}'
+      NODE_ENV: '${NODE_ENV:-lde}'
+      LDE_URL: 'http://hhnode:8545'
+
+      DEBUG: 'pm:*'
+      SHELL: '/bin/sh'
+      TZ: 'America/Los_Angeles'
+
+  hhnode:
+    image: node:16.15.0
+    tty: '${TTY:-true}'
+    working_dir: /node
+    container_name: 'hhnode'
+    volumes:
+      - ./package.json:/node/package.json
+      - ./hardhat.config.js:/node/hardhat.config.js
+      - ./hhnode/node_modules:/node/node_modules
+    command: sh -c "
+      npm install -d &&
+      npm audit fix || true &&
+      npm run hhnode"
+    environment:
+      TZ: 'America/Los_Angeles'
+      LDE_URL: 'http://hhnode:8545'
+    ports:
+      - '8545:8545'

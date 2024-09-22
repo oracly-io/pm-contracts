@@ -1,0 +1,50 @@
+{
+  "name": "pm-react-contracts",
+  "version": "1.0.0",
+  "description": "OraclyV1 Smart Contract",
+  "author": "Oracly Team <team@oracly.io>",
+  "private": true,
+  "scripts": {
+    "deploy-mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "verify-mumbai": "npx hardhat verify --network mumbai",
+    "deploy-polygon": "npx hardhat run scripts/deploy.js --network polygon",
+    "dev": " ./bin/dev.sh",
+    "build": "npx hardhat test --network lde --show-stack-traces",
+    "lint": "eslint '**/*.js'",
+    "hint": "solhint 'contracts/**/*.sol'",
+    "docgen": "HARDHAT_CONFIG=hardhat.config.docgen.js npx hardhat docgen",
+    "hhnode": "npx hardhat node"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "0.4.1",
+    "@openzeppelin/contracts": "5.0.2",
+    "@openzeppelin/test-helpers": "0.5.16",
+    "@nomicfoundation/hardhat-verify": "2.0.10",
+    "@nomicfoundation/hardhat-ethers": "3.0.6",
+    "@nomicfoundation/hardhat-chai-matchers":"2.0.4",
+    "hardhat-gas-reporter": "1.0.10",
+    "dotenv": "16.4.1",
+    "hardhat": "2.22.10",
+    "solhint": "3.6.2",
+    "solidity-coverage": "0.8.13",
+    "ethers": "6.13.1",
+    "solidity-docgen":"0.6.0-beta.36"
+  },
+  "devDependencies": {
+    "@aoberoi/chokidar-cli": "2.0.0",
+    "@ethersproject/keccak256": "5.7.0",
+    "chai": "4.4.1",
+    "concurrently": "5.3.0",
+    "eslint": "7.32.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.2.0",
+    "prettier": "2.8.8",
+    "prettier-plugin-solidity": "1.3.1"
+  },
+  "engines": {
+    "node": ">= 16.13.0",
+    "npm": ">= 8.0.0"
+  }
+}

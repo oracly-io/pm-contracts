@@ -1,0 +1,17 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+    "compiler-version": ["error", "^0.8.0"],
+
+    "immutable-vars-naming": ["off"],
+    "max-states-count": ["off"],
+    "func-visibility": ["warn", { "ignoreConstructors": true }],
+    "reason-string": ["warn", { "maxLength": 50 }],
+    "event-name-camelcase": "off",
+    "var-name-mixedcase": "off",
+    "not-rely-on-time": "off",
+    "avoid-tx-origin": "off",
+    "explicit-types": "off",
+    "custom-errors": "off"
+  }
+}
